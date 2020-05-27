@@ -5,6 +5,8 @@ class Matrix:
         self.shape = (rows, cols)
         if default_values == 'random':
             pass  # Generate a matrix of random values
+        elif default_values == "eye":
+            pass # Generate identity matrix
         else:
             self.values = [[default_values]*cols for val in range(rows)]
 
@@ -48,8 +50,13 @@ class Matrix:
                     self[(i, j)] *= other[(0, 0)]
             return self
         # Matrix Multiplication
-        elif self.shape == other.shape:
-            
+        elif self.cols == other.rows:
+            result = Matrix(other.rows, self.cols, 0)
+            for i in range(self.rows):
+                for j in range(other.cols):
+                    for k in range(other.rows):
+                        result[(i, j)] += self[(i, k)] * other[(k, j)]
+            return result  
         elif self.shape != other.shape:
             print(
                 f"Shape error: You may only multiply matrices of the same dimensons\n{self.get_shape()}{other.get_shape()}")
