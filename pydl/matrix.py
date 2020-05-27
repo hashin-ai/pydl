@@ -3,9 +3,9 @@ class Matrix:
         self.rows = rows
         self.cols = cols
         self.shape = (rows, cols)
-        if default_values == 'random':
+        if default_values == 'r':
             pass  # Generate a matrix of random values
-        elif default_values == "eye":
+        elif default_values == "i":
             pass # Generate identity matrix
         else:
             self.values = [[default_values]*cols for val in range(rows)]
